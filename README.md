@@ -8,5 +8,5 @@ rainmeter skin which parses the battery level from the website and displays it w
 Requirements: 
 - [Express](https://expressjs.com/)
 - [node-hid](https://www.npmjs.com/package/node-hid)
-
+- [pm2](https://pm2.keymetrics.io/)
  
