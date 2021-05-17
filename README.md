@@ -4,3 +4,9 @@ A project for a friend who has a SteelSeries Arctis 7 and wanted to make a rainm
 
 I have included both the script that gets the battery level of the headset and serves that information on a webserver as well as the
 rainmeter skin which parses the battery level from the website and displays it with a cool battery icon (made by yours truly :3)
+
+Requirements: 
+- [Express](https://expressjs.com/)
+- [node-hid](https://www.npmjs.com/package/node-hid)
+
+ 
