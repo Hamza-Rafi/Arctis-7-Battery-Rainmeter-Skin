@@ -8,6 +8,8 @@ const PORT = 3000
 
 const fs = require('fs')
 
+// PASTE PATH OF FILE HERE
+const currentDir = String.raw`D:\Desktop Stuff\testingHID`
 
 var devices = HID.devices()
 
@@ -35,7 +37,7 @@ try {
             console.log(batteryLevel + '%')
             
 
-            fs.writeFileSync('./batteryLevel.json', JSON.stringify({percentage: batteryLevel}, null, 4))
+            fs.writeFileSync(`${currentDir}/batteryLevel.json`, JSON.stringify({percentage: batteryLevel}, null, 4))
             lastBatteryLevel = batteryLevel
         }
     
@@ -48,12 +50,13 @@ try {
     }, 500)
     
 } catch (error) {
-    console.log('SteelSeries Arctis 7 not connected')
+    console.log('SteelSeries Arctis 7 not connected. PLease try again')
+    process.exit(1)
 }    
 
 
 app.get('/', (req, res) => {
-    var batteryLevel = JSON.parse(fs.readFileSync('./batteryLevel.json'))['percentage']
+    var batteryLevel = JSON.parse(fs.readFileSync(`${currentDir}/batteryLevel.json`))['percentage']
     res.send(`<body>${batteryLevel}%</body>`)
 })
 
