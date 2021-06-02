@@ -59,7 +59,10 @@ app.get('/', (req, res) => {
     var batteryLevel = JSON.parse(fs.readFileSync(`${currentDir}/batteryLevel.json`))['percentage']
     res.send(`<body>${batteryLevel}%</body>`)
 })
-
+app.get('/json', (req, res) => {
+    var batteryLevel = JSON.parse(fs.readFileSync(`${currentDir}/batteryLevel.json`))
+    res.send(batteryLevel)
+})
 
 app.listen(PORT, () => {
     console.log('App listening on: http://localhost:' + PORT + '/')
