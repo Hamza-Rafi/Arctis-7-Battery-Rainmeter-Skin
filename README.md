@@ -9,4 +9,15 @@ Requirements:
 - [Express](https://expressjs.com/)
 - [node-hid](https://www.npmjs.com/package/node-hid)
 - [pm2](https://pm2.keymetrics.io/)
- 
+
+## How to install the Rainmeter skin
+- To download and install the rainmeter skin download the `rmskin` file from [here](https://github.com/HamuzaDesu/Arctis-7-Battery-Rainmeter-Skin/releases/tag/v2.0.0*)
+- Double click the file and it will automatically install into Rainmeter
+## How to install the server
+- Download or clone this repository in a directory of your choosing
+- Move the `HeadsetBatteryScript` folder into someplace safe (like your 'Documents' folder or something)
+- Navigate to the `HeadsetBatteryScript` folder using CMD (the command prompt)
+- run `npm install`
+- open `headsetScriptStartup.cmd` and put the full path of the `index.js` file in there
+- run `setup.cmd` by double clicking on it or running it in CMD
+- done c:. Now the server will automatically start up on PC boot so you don't have to worry about running the script all the time.

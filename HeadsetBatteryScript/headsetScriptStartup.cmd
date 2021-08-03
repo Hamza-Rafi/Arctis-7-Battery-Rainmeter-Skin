@@ -1,5 +1,5 @@
 @REM PASTE FULL FILE PATH HERE
-SET indexFile="D:\Desktop Stuff\testingHID\index.js"
+SET indexFile="Path of index.js goes here"
 
 pm2 start %indexFile% --name "Headset Battery"
 
