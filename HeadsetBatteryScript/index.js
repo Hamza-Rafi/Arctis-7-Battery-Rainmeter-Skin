@@ -8,8 +8,7 @@ const PORT = 3000
 
 const fs = require('fs')
 
-// PASTE PATH OF FILE HERE
-const currentDir = String.raw`D:\Desktop Stuff\testingHID`
+const currentDir = __dirname
 
 var devices = HID.devices()
 
