@@ -22,4 +22,5 @@ Requirements:
 - Double click `headsetScriptStartup.cmd` to run it.
 - Download this [gist](https://gist.github.com/HamuzaDesu/248b2dd52e2d3945f7306fb0dc80c611)
 - Move the `restartPm2Apps.cmd` file into your startup folder (Type `shell:startup` into windows run dialogue (WIN + R))
+- You may need to run `pm2 save` into a terminal.
 - done c:. Now the server will automatically start up on PC boot so you don't have to worry about running the script all the time.
