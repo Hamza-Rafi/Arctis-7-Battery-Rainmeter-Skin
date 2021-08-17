@@ -11,7 +11,7 @@ Requirements:
 - [pm2](https://pm2.keymetrics.io/)
 
 ## How to install the Rainmeter skin
-- To download and install the rainmeter skin download the `rmskin` file from [here](https://github.com/HamuzaDesu/Arctis-7-Battery-Rainmeter-Skin/releases/tag/v2.0.0*)
+- To download and install the rainmeter skin download the `rmskin` file from [here](https://github.com/HamuzaDesu/Arctis-7-Battery-Rainmeter-Skin/releases/latest)
 - Double click the file and it will automatically install into Rainmeter
 ## How to install the server
 - Download or clone this repository in a directory of your choosing
