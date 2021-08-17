@@ -19,5 +19,7 @@ Requirements:
 - Navigate to the `HeadsetBatteryScript` folder using CMD (the command prompt)
 - run `npm install`
 - open `headsetScriptStartup.cmd` and put the full path of the `index.js` file in there
-- run `setup.cmd` by double clicking on it or running it in CMD
+- Double click `headsetScriptStartup.cmd` to run it.
+- Download this [gist](https://gist.github.com/HamuzaDesu/248b2dd52e2d3945f7306fb0dc80c611)
+- Move the `restartPm2Apps.cmd` file into your startup folder (Type `shell:startup` into windows run dialogue (WIN + R))
 - done c:. Now the server will automatically start up on PC boot so you don't have to worry about running the script all the time.
