@@ -6,8 +6,6 @@ HID.setDriverType('libusb')
 const app = require('express')()
 const PORT = 3000
 
-const fs = require('fs');
-
 const getBatteryLevel = new Promise((resolve, reject) =>{
     var devices = HID.devices()
     
