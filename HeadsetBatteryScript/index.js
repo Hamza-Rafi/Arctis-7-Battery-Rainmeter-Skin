@@ -6,61 +6,52 @@ HID.setDriverType('libusb')
 const app = require('express')()
 const PORT = 3000
 
-const fs = require('fs')
+const fs = require('fs');
+const { rejects } = require('assert');
 
 const currentDir = __dirname
 
-var devices = HID.devices()
-
-var steelseriesDevices = [];
-
-try {
-    for(var i = 0; i < devices.length; i++){
-        var currentDevice = devices[i]
-        if(currentDevice != undefined && currentDevice['product'] != undefined){
-            if(devices[i]['product'].includes('SteelSeries Arctis 7')){
-                steelseriesDevices.push(devices[i])
+const getBatteryLevel = new Promise((resolve, reject) =>{
+    var devices = HID.devices()
+    
+    var steelseriesDevices = [];
+    
+    try {
+        for(var i = 0; i < devices.length; i++){
+            var currentDevice = devices[i]
+            if(currentDevice != undefined && currentDevice['product'] != undefined){
+                if(devices[i]['product'].includes('SteelSeries Arctis 7')){
+                    steelseriesDevices.push(devices[i])
+                }
             }
         }
-    }
+        var headset = steelseriesDevices[1]
+        
+        
+        var headsetHandler = new HID.HID(headset['path'])
+    
+        headsetHandler.on('data', data => {
+            var batteryLevel = data[2]
+    
+            resolve(batteryLevel)
+        })
+    
+        headsetHandler.write([0x06, 0x18])
+        
+    } catch (error) {
+        console.log('SteelSeries Arctis 7 not connected. PLease try again')
 
-    var headset = steelseriesDevices[1]
-    var lastBatteryLevel = 0
-    
-    var headsetHandler = new HID.HID(headset['path'])
+        reject('SteelSeries Arctis 7 not connected. PLease try again')
+    }    
 
-    headsetHandler.on('data', data => {
-        var batteryLevel = data[2]
-    
-        if(batteryLevel != lastBatteryLevel){
-            console.log(batteryLevel + '%')
-            
-
-            fs.writeFileSync(`${currentDir}/batteryLevel.json`, JSON.stringify({percentage: batteryLevel}, null, 4))
-            lastBatteryLevel = batteryLevel
-        }
-    
-    })
-    
-    setTimeout(() => {
-        setInterval(() => {
-            headsetHandler.write([0x06, 0x18])
-        }, 200);
-    }, 500)
-    
-} catch (error) {
-    console.log('SteelSeries Arctis 7 not connected. PLease try again')
-    process.exit(1)
-}    
-
+})
 
 app.get('/', (req, res) => {
-    var batteryLevel = JSON.parse(fs.readFileSync(`${currentDir}/batteryLevel.json`))['percentage']
-    res.send(`<body>${batteryLevel}%</body>`)
-})
-app.get('/json', (req, res) => {
-    var batteryLevel = JSON.parse(fs.readFileSync(`${currentDir}/batteryLevel.json`))
-    res.send(batteryLevel)
+    getBatteryLevel.then(batteryLevel => {
+        console.log(batteryLevel)
+        res.send(`<body>${batteryLevel}%</body>`)
+    })
+
 })
 
 app.listen(PORT, () => {
