@@ -7,9 +7,6 @@ const app = require('express')()
 const PORT = 3000
 
 const fs = require('fs');
-const { rejects } = require('assert');
-
-const currentDir = __dirname
 
 const getBatteryLevel = new Promise((resolve, reject) =>{
     var devices = HID.devices()
@@ -51,7 +48,6 @@ app.get('/', (req, res) => {
         console.log(batteryLevel)
         res.send(`<body>${batteryLevel}%</body>`)
     })
-
 })
 
 app.listen(PORT, () => {
